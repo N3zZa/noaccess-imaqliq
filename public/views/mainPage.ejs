@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; Charset=UTF-8" />
+    <title>Main page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/keyboard.css" />
+
+    <script type="text/javascript" src="libs/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="libs/lodash.compat.min.js"></script>
+    <script type="text/javascript" src="libs/event_emitter.js"></script>
+    <script type="text/javascript" src="js/lib/smartbox.js"></script>
+    <script>
+        // запуск навигации
+        $(function () {
+            $$nav.on()
+        })
+    </script>
+</head>
+<style>
+    body,
+    h1,
+    h2,
+    p,
+    div {
+        padding: 0;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        color: rgb(110, 197, 255);
+    }
+   
+    .bg {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: url(/img/mainBg.jpg) no-repeat 100% 100%;
+        z-index: -10;
+    }
+
+    .wrap {
+        max-width: 1440px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .header {
+        max-width: 1440px;
+        margin: 0 auto;
+        display: fixed;
+        position: relative;
+        padding: 10px;
+        height: 30px;
+        background: rgb(20, 20, 20);
+        margin-bottom: 10px;
+    }
+
+    .header h2 {
+        color: white;
+        float: left;
+        margin-top: 2px;
+        margin-left: 35px;
+    }
+
+    .header_images {
+        position: absolute;
+        right: 20px;
+        bottom: 5px;
+        float: right;
+    }
+
+
+    .header .focus {
+        border: 5px solid yellow;
+        margin: -5px
+    }
+
+    .search_block {
+        display: inline-block;
+        margin-right: 25px;
+        margin-bottom: 4px;
+    }
+
+    .filmText {
+        display: none;
+    }
+
+    main {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    main h1 {
+        margin: 20px 0 20px 0;
+    }
+
+    main .nav-item {
+        border: 5px solid transparent
+    }
+
+    #channelsSlider .focus {
+        border: 5px solid yellow;
+    }
+
+    .slider {
+        position: relative;
+        overflow-y: hidden;
+        white-space: nowrap;
+        margin-bottom: 15px;
+        word-wrap: break-word;
+    }
+
+    .slider p {
+        white-space: wrap;
+        word-wrap: break-word;
+    }
+
+    #channelsSlider {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    main h1 {
+        font-size: 24px;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .slider::-webkit-scrollbar-thumb {
+        background: none;
+    }
+
+    .slider::-webkit-scrollbar-track {
+        /* фон */
+        background: none;
+    }
+
+    .slider::-webkit-scrollbar {
+        /* фон */
+        width: 0;
+        height: 0;
+        background: none;
+    }
+
+    .text {
+        white-space: wrap;
+        word-wrap: break-word;
+        color: #fff;
+    }
+
+    .text h1 {
+        font-size: 18px;
+        margin: 0;
+        color: white;
+        text-transform: none;
+    }
+
+    .filmsItemText {
+        position: absolute;
+        width: 160px;
+        max-height: 80px;
+        width: 100%;
+    }
+
+    .filmsItemText h1 {
+        white-space: wrap;
+        font-size: 14px;
+    }
+
+    .filmsItemText p {
+        white-space: wrap;
+        font-size: 14px;
+        color: white;
+    }
+
+    .filmItemTexth1 {
+        word-wrap: break-word;
+    }
+
+    .premieresSlider .premieresText {
+        position: absolute;
+        left: 5px;
+        bottom: 10px;
+    }
+
+    .focus .premieresText {
+        display: block;
+    }
+
+    .premieresSlider .focus .filmText {
+        display: none;
+        position: absolute;
+        left: 5px;
+        bottom: 10px;
+    }
+
+    .item {
+        position: relative;
+        display: inline-block;
+        margin: 0;
+        height: 240px;
+        width: 150px;
+        margin-right: 10px;
+    }
+
+
+    .filmsItemBg {
+        width: 100%;
+        height: 200px;
+    }
+
+    .fullHdFilmsBtn {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+    .slider .focus {
+        border: 5px solid yellow;
+    }
+
+    .channel {
+        width: 250px;
+        height: 125px;
+        display: inline-block;
+        position: relative;
+        overflow: none;
+    }
+
+    .channel .channelName {
+        display: none;
+    }
+
+    .focus .channelName {
+        display: block;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        color: white;
+    }
+
+    .fullhdItem {
+        border: 5px solid transparent;
+        width: 200px;
+    }
+
+    #log {
+        position: fixed;
+        top: 100px;
+        left: 200px;
+        color: red;
+        font-size: 24px;
+        z-index: 20;
+    }
+
+    .errorMessage {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        left: 0;
+        top: 150px;
+    }
+    .errorMessage_inner {
+        position: fixed;
+        width: 500px;
+        height: 170px;
+        background: white;
+        padding: 10px 20px;
+        z-index: 10;
+        margin: 0 auto;
+    }
+    .errorMessage_inner p, h4 {
+        color: black;
+    }
+    .errorMessage_inner h4 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        margin-top: 25px;
+    }
+    .errorMessage_inner p {
+        font-size: 14px;
+    }
+    .errorMessage_inner h3 {
+        font-size: 18px;
+    }
+    .errorMessage_inner {
+        position: relative;
+    }
+    .errorMessageOk {
+        position: absolute;
+        right: 20px;
+        bottom: 0;
+    }
+    .errorMessageOk h3 {
+        padding: 3px;
+        border: 3px solid rgb(110, 197, 255);
+    }
+   
+</style>
+
+<body>
+    <div class="bg"></div>
+   
+    <header class="header">
+        <h2>UconTV</h2>
+        <div class="header_images navigation-items">
+            <div class="search_block">
+                <img id="search" class="search nav-item" src="/img/search.svg" alt="search">
+            </div>
+        </div>
+    </header>
+    <div class="wrap">
+        <div class="errorMessage">
+            <div class="errorMessage_inner navigation-items">
+                <h4>Нет доступа</h4>
+                <p>Доступно только для абонентов интернет провайдера UCON. Для подключения звоните по номерам 0500 166660, 0555
+                    166660,
+                    0772 166660. ucon.net.kg</p>
+                <div id="errorOk" class="errorMessageOk nav-item" data-nav_ud="none,none,none,none">
+                    <h3>ОК</h4>
+                </div>
+            </div>
+        </div>
+        <main class="navigation-items">
+            <h1>Премьеры</h1>
+            <div id="premieresSlider" class="slider navigation-items" data-nav_type="hbox"
+                data-nav_ud="#channelsSlider,none,#filmsSlider,none">
+                <div id="fullhdItem" class="filmsItem item fullhdItem nav-item" data-nav_ud="0,none,0,none">
+                    <div id="filmFullHd" class="filmsItemBg fullHdFilmsBtn"
+                        style="background: url('/img/fullhd.jpg'); background-repeat:no-repeat;background-size: 100% 100%;">
+                    </div>
+                </div>
+                <!-- с помощью шаблонизатора импортирую html разметку -->
+                <%- include('./elements/premieres.ejs') %>
+            </div>
+            <h1>Фильмы</h1>
+            <div id="filmsSlider" class="slider navigation-items" data-nav_type="hbox"
+                data-nav_ud="#premieresSlider,none,#animeSlider,none">
+                <!-- с помощью шаблонизатора импортирую html разметку -->
+                <%- include('./elements/films.ejs') %>
+            </div>
+            <h1>Сериалы</h1>
+            <div id="serialsSlider" class="slider navigation-items" data-nav_type="hbox"
+                data-nav_ud="#animeSlider,none,#cartoonSerialsSlider,none">
+                <!-- с помощью шаблонизатора импортирую html разметку -->
+                <%- include('./elements/serials.ejs') %>
+            </div>
+            <h1>Аниме</h1>
+            <div id="animeSlider" class="slider navigation-items" data-nav_type="hbox"
+                data-nav_ud="#premieresSlider,none,#serialsSlider,none">
+                <!-- с помощью шаблонизатора импортирую html разметку -->
+                <%- include('./elements/anime.ejs') %>
+            </div>
+        </main>
+    </div>
+
+
+    <script type="text/javascript">
+
+        $('#channel154').after('<br/>')
+        // код нажатия на клавиши
+        var count = 0
+        $(document).keydown(function (e) {
+
+            switch (e.keyCode) {
+                case 37: //left
+                    if ($('.focus').get(0)) {
+                        $('.focus').get(0).scrollIntoView(1)
+                    }
+                    
+                    break;
+                case 39: // right
+                     if ($('.focus').get(0)) {
+                        $('.focus').get(0).scrollIntoView(1)
+                    }
+                    break;
+                case 38: // top
+                 if ($('.focus').get(0)) {
+                         var focusHeight = $('.focus').offset().top
+                     window.scrollTo(0, focusHeight)
+                    }
+                   
+                    break;
+                case 40: // bottom
+                     if ($('.focus').get(0)) {
+                        var focusHeight = $('.focus').offset().top
+                        window.scrollTo(0, focusHeight)
+                    }
+                    break;
+            }
+             if ($('.focus').get(0)) {
+                var focusHeight = $('.focus').offset().top
+                window.scrollTo(0, focusHeight)
+            }
+        });
+        $('#fullhdItem').click(function () {
+            $('.errorMessage').show()
+            $$nav.on('.errorMessage_inner');
+            $$nav.current('#errorOk')
+        })
+        $('.search_block').click(function () {
+            $('.errorMessage').show()
+            $$nav.on('.errorMessage_inner');
+            $$nav.current('#errorOk')
+        })
+        $('.errorMessageOk').click(function () {
+            $('.errorMessage').hide()
+            $$nav.on()
+        })
+    </script>
+</body>
+
+</html>
